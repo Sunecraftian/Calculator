@@ -1,4 +1,47 @@
 <resources>
     <string name="app_name">Calculator</string>
     <string name="display">0</string>
+
+    <string name="btn0">btn0</string>
+    <string name="btn1">btn1</string>
+    <string name="btn2">btn2</string>
+    <string name="btn3">btn3</string>
+    <string name="btn4">btn4</string>
+    <string name="btn5">btn5</string>
+    <string name="btn6">btn6</string>
+    <string name="btn7">btn7</string>
+    <string name="btn8">btn8</string>
+    <string name="btn9">btn9</string>
+    <string name="btnEquals">btnEquals</string>
+    <string name="btnPlus">btnPlus</string>
+    <string name="btnMinus">btnMinus</string>
+    <string name="btnMulti">btnMulti</string>
+    <string name="btnDiv">btnDiv</string>
+    <string name="btnPercent">btnPercent</string>
+    <string name="btnDot">btnDot</string>
+    <string name="btnSqrt">btnSqrt</string>
+    <string name="btnSign">btnSign</string>
+    <string name="btnClear">btnClear</string>
+
+    <string name="btn0Text">0</string>
+    <string name="btn1Text">1</string>
+    <string name="btn2Text">2</string>
+    <string name="btn3Text">3</string>
+    <string name="btn4Text">4</string>
+    <string name="btn5Text">5</string>
+    <string name="btn6Text">6</string>
+    <string name="btn7Text">7</string>
+    <string name="btn8Text">8</string>
+    <string name="btn9Text">9</string>
+    <string name="btnEqualsText">=</string>
+    <string name="btnPlusText">+</string>
+    <string name="btnMinusText">-</string>
+    <string name="btnMultiText">\u00D7</string>
+    <string name="btnDivText">\u00F7</string>
+    <string name="btnPercentText">%</string>
+    <string name="btnDotText">.</string>
+    <string name="btnSqrtText">\u221A</string>
+    <string name="btnSignText">\u00B1</string>
+    <string name="btnClearText">C</string>
+
 </resources>
