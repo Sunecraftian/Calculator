@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout layout;
     private ConstraintSet set;
     private LayoutParams params;
+
+    private final int BTN_WIDTH = 5;
+    private final int BTN_HEIGHT = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         layout = binding.layout;
         set = new ConstraintSet();
 
+        int[] btnIDs = new int[BTN_WIDTH * BTN_HEIGHT];
+        String[] btnTags = getResources().getStringArray(R.array.btnTags);
+        String[] btnText = getResources().getStringArray(R.array.btnText);
+
+        int[][] horizontals = new int[BTN_HEIGHT][BTN_WIDTH];
+        int[][] verticals = new int[BTN_WIDTH][BTN_HEIGHT];
+
+        // Create Display TextView
         TextView display = new TextView(this);
         display.setId(View.generateViewId());
         display.setTag("display");
@@ -46,16 +58,37 @@ public class MainActivity extends AppCompatActivity {
         display.setTextSize(48);
         display.setBackgroundColor(Color.CYAN);
 
-
-
         layout.addView(display);
 
+        // Create Buttons
+        for (int i = 0; i < (BTN_WIDTH * BTN_HEIGHT); i++) {
+            int id = View.generateViewId();
+            int row = id % BTN_WIDTH;
+            int col = id / BTN_WIDTH;
+            btnIDs[i] = id;
+            Button button = new Button(this);
+            button.setId(id);
+            button.setTag(btnTags[id]);
+            button.setText(btnText[id]);
+            horizontals[row][col] = id;
+            verticals[col][row] = id;
+            layout.addView(button);
+        }
+
+
+        // Create ConstraintSet from Layout
         set.clone(layout);
 
-        set.connect(display.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 0);
-        set.connect(display.getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 0);
-        set.connect(display.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
+        // Constrain Display to North, East, and West Guides
+        set.connect(display.getId(), ConstraintSet.LEFT, binding.guideWest.getId(), ConstraintSet.LEFT, 0);
+        set.connect(display.getId(), ConstraintSet.RIGHT, binding.guideEast.getId(), ConstraintSet.RIGHT, 0);
+        set.connect(display.getId(), ConstraintSet.TOP, binding.guideNorth.getId(), ConstraintSet.TOP, 0);
 
+        // Constrain Buttons with Horizontal Chains
+        for (int i = 0; i < BTN_WIDTH; i++) {
+            for (int j = 0; j < BTN_HEIGHT; i++)
+                set.createHorizontalChain(binding.guideWest.getId(),binding.guideWest.getRight(),  )
+        }
 
 
         set.applyTo(layout);
