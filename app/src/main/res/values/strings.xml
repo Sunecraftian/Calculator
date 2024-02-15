@@ -3,49 +3,49 @@
     <string name="display">0</string>
 
     <string-array name="btnTags">
-        <item>btn0</item>
-        <item>btn1</item>
-        <item>btn2</item>
-        <item>btn3</item>
-        <item>btn4</item>
-        <item>btn5</item>
-        <item>btn6</item>
         <item>btn7</item>
         <item>btn8</item>
         <item>btn9</item>
-        <item>btnEquals</item>
-        <item>btnPlus</item>
-        <item>btnMinus</item>
-        <item>btnMulti</item>
+        <item>btnSqrt</item>
+        <item>btnClear</item>
+        <item>btn4</item>
+        <item>btn5</item>
+        <item>btn6</item>
         <item>btnDiv</item>
         <item>btnPercent</item>
-        <item>btnDot</item>
-        <item>btnSqrt</item>
+        <item>btn1</item>
+        <item>btn2</item>
+        <item>btn3</item>
+        <item>btnMulti</item>
+        <item>btnMinus</item>
         <item>btnSign</item>
-        <item>btnClear</item>
+        <item>btn0</item>
+        <item>btnDot</item>
+        <item>btnPlus</item>
+        <item>btnEquals</item>
     </string-array>
 
     <string-array name="btnText">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
         <item>7</item>
         <item>8</item>
         <item>9</item>
-        <item>=</item>
-        <item>+</item>
-        <item>-</item>
-        <item>u00D7</item>
-        <item>u00F7</item>
-        <item>%</item>
-        <item>.</item>
-        <item>u221A</item>
-        <item>u00B1</item>
+        <item>\u221A</item>
         <item>C</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>\u00F7</item>
+        <item>%</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>\u00D7</item>
+        <item>-</item>
+        <item>\u00B1</item>
+        <item>0</item>
+        <item>.</item>
+        <item>+</item>
+        <item>=</item>
     </string-array>
 
 

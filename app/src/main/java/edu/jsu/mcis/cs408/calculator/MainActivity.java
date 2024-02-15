@@ -56,20 +56,20 @@ public class MainActivity extends AppCompatActivity {
         display.setGravity(Gravity.END);
         display.setText("0");
         display.setTextSize(48);
-        display.setBackgroundColor(Color.CYAN);
+//        display.setBackgroundColor(Color.CYAN);
 
         layout.addView(display);
 
         // Create Buttons
         for (int i = 0; i < (BTN_WIDTH * BTN_HEIGHT); i++) {
             int id = View.generateViewId();
-            int row = id % BTN_WIDTH;
-            int col = id / BTN_WIDTH;
+            int row = i / BTN_WIDTH;
+            int col = i % BTN_WIDTH;
             btnIDs[i] = id;
             Button button = new Button(this);
             button.setId(id);
-            button.setTag(btnTags[id]);
-            button.setText(btnText[id]);
+            button.setTag(btnTags[i]);
+            button.setText(btnText[i]);
             horizontals[row][col] = id;
             verticals[col][row] = id;
             layout.addView(button);
@@ -85,13 +85,22 @@ public class MainActivity extends AppCompatActivity {
         set.connect(display.getId(), ConstraintSet.TOP, binding.guideNorth.getId(), ConstraintSet.TOP, 0);
 
         // Constrain Buttons with Horizontal Chains
-        for (int i = 0; i < BTN_WIDTH; i++) {
-            for (int j = 0; j < BTN_HEIGHT; i++)
-                set.createHorizontalChain(binding.guideWest.getId(),binding.guideWest.getRight(),  )
+        for (int i = 0; i < BTN_HEIGHT; i++) {
+            set.createHorizontalChain(binding.guideWest.getId(), ConstraintSet.RIGHT, binding.guideEast.getId(), ConstraintSet.LEFT, horizontals[i], null, ConstraintSet.CHAIN_SPREAD);
         }
 
+        for (int i = 0; i < BTN_WIDTH; i++) {
+            set.createVerticalChain(display.getId(), ConstraintSet.BOTTOM, binding.guideSouth.getId(), ConstraintSet.TOP, verticals[i], null, ConstraintSet.CHAIN_SPREAD);
+        }
 
         set.applyTo(layout);
+
+        for (int btnID : btnIDs) {
+            Button button = layout.findViewById(btnID);
+            params = button.getLayoutParams();
+            params.width = 0;
+            params.height = 0;
+        }
 
         params = display.getLayoutParams();
         params.width = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
