@@ -108,4 +108,7 @@ public class MainActivity extends AppCompatActivity {
         display.setLayoutParams(params);
 
     }
+
+
+
 }
