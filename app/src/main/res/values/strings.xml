@@ -20,7 +20,7 @@
         <item>btnMinus</item>
         <item>btnSign</item>
         <item>btn0</item>
-        <item>btnDot</item>
+        <item>btn.</item>
         <item>btnPlus</item>
         <item>btnEquals</item>
     </string-array>
