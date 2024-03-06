@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -14,26 +15,39 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.beans.PropertyChangeEvent;
+
 import edu.jsu.mcis.cs408.calculator.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AbstractView, View.OnClickListener{
 
     private ActivityMainBinding binding;
 
     private ConstraintLayout layout;
     private ConstraintSet set;
     private LayoutParams params;
+    public TextView display;
+
 
     private final int BTN_WIDTH = 5;
     private final int BTN_HEIGHT = 4;
+
+    private CalculatorController controller;
+    private CalculatorModel model;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-
         setContentView(view);
+
+        controller = new CalculatorController();
+        model = new CalculatorModel();
+
+        controller.addView(this);
+        controller.addModel(model);
 
         initLayout();
     }
@@ -50,13 +64,12 @@ public class MainActivity extends AppCompatActivity {
         int[][] verticals = new int[BTN_WIDTH][BTN_HEIGHT];
 
         // Create Display TextView
-        TextView display = new TextView(this);
+        display = new TextView(this);
         display.setId(View.generateViewId());
         display.setTag("display");
         display.setGravity(Gravity.END);
         display.setText("0");
         display.setTextSize(48);
-//        display.setBackgroundColor(Color.CYAN);
 
         layout.addView(display);
 
@@ -70,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             button.setId(id);
             button.setTag(btnTags[i]);
             button.setText(btnText[i]);
+            button.setOnClickListener(this);
             horizontals[row][col] = id;
             verticals[col][row] = id;
             layout.addView(button);
@@ -109,6 +123,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        String tag = v.getTag().toString();
+
+        if (tag.startsWith("btn")) { controller.sendBtnPress(tag); }
+    }
+
+    @Override
+    public void modelPropertyChange(PropertyChangeEvent evt) {
+        String propertyName = evt.getPropertyName();
+        String propertyValue = evt.getNewValue().toString();
+        String oldPropertyValue;
 
 
+        if (propertyName.equals(CalculatorController.ELEMENT_DISPLAY_TEXT)) {
+
+            oldPropertyValue = display.getText().toString();
+
+            if (!oldPropertyValue.equals(propertyValue)) {
+                display.setText(propertyValue);
+            }
+        }
+
+    }
 }
